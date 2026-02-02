@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Yay! 💕</title>
+  <title>You Said YES 💕</title>
   <style>
     body {
       height: 100vh;
+      margin: 0;
+      overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -16,29 +18,81 @@
     .container {
       text-align: center;
       background: white;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      padding: 40px 30px;
+      border-radius: 25px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+      max-width: 380px;
+      z-index: 2;
     }
 
     h1 {
       color: #ff4d6d;
+      margin-bottom: 15px;
+    }
+
+    p {
+      color: #555;
+      font-size: 16px;
       margin-bottom: 20px;
     }
 
     img {
       width: 300px;
       border-radius: 15px;
+      margin-bottom: 15px;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -20px;
+      font-size: 22px;
+      animation: floatUp 5s linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      from {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-110vh);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>Yay! You made my day 💕</h1>
-    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Love GIF">
-    <p>Happy Valentine’s Day ❤️</p>
+    <h1>You said YES 💖</h1>
+    <p>
+      I knew it 😌<br>
+      Just like Jim chose Pam,<br>
+      I choose you — today and always.
+    </p>
+
+    <img src="https://media.giphy.com/media/12XMGIWtrHBl5e/giphy.gif" alt="Jim and Pam Love">
+
+    <p>
+      Happy Valentine’s Day ❤️<br>
+      You make my world warmer.
+    </p>
   </div>
+
+  <script>
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = (3 + Math.random() * 3) + "s";
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 6000);
+    }, 350);
+  </script>
 
 </body>
 </html>
