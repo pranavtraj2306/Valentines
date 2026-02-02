@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <title>You Said Yes ❤️</title>
+
   <style>
     body {
       height: 100vh;
@@ -20,9 +21,15 @@
       padding: 45px 35px;
       border-radius: 30px;
       text-align: center;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      box-shadow: 0 25px 50px rgba(0,0,0,0.3);
       max-width: 380px;
+      animation: fadeIn 1.5s ease;
       z-index: 2;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     h1 {
@@ -34,20 +41,20 @@
     p {
       color: #555;
       font-size: 16px;
-      line-height: 1.6;
+      line-height: 1.7;
       margin-bottom: 18px;
     }
 
     img {
       width: 100%;
       max-width: 300px;
-      border-radius: 18px;
+      border-radius: 20px;
       margin: 20px 0;
     }
 
     .signature {
-      margin-top: 10px;
-      font-weight: bold;
+      margin-top: 12px;
+      font-size: 18px;
       color: #ff4d6d;
     }
 
@@ -61,47 +68,65 @@
     }
 
     @keyframes floatUp {
-      from {
-        transform: translateY(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-110vh);
-        opacity: 0;
-      }
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-110vh); opacity: 0; }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background-color: pink;
+      animation: fall 4s linear infinite;
+      opacity: 0.9;
+    }
+
+    @keyframes fall {
+      from { transform: translateY(-10vh) rotate(0deg); }
+      to { transform: translateY(110vh) rotate(360deg); }
     }
   </style>
 </head>
 <body>
 
+  <!-- Background music -->
+  <audio id="bgMusic" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+  </audio>
+
   <div class="container">
     <h1>You said YES ❤️</h1>
 
     <p>
-      And just like that,<br>
-      my heart smiled a little more today.
+      And in that one moment,<br>
+      everything felt lighter,<br>
+      warmer, and a little more beautiful.
     </p>
 
     <img src="https://media.giphy.com/media/l2QDM9Jnim1YVILXa/giphy.gif" alt="Love GIF">
 
     <p>
-      Thank you for choosing me.<br>
-      For the laughs, the comfort,<br>
-      and all the little moments we’ll share.
+      Thank you for choosing this.<br>
+      For choosing us.<br>
+      For all the little moments yet to come.
     </p>
 
     <p>
       Happy Valentine’s Day 💕<br>
-      I’m really glad it’s you.
+      Today feels special because of you.
     </p>
 
-    <div class="signature">
-      ❤️
-    </div>
+    <div class="signature">❤️</div>
   </div>
 
   <script>
-    // Floating hearts animation
+    // Enable music on first interaction (browser-friendly)
+    document.body.addEventListener("click", () => {
+      document.getElementById("bgMusic").play();
+    }, { once: true });
+
+    // Floating hearts
     setInterval(() => {
       const heart = document.createElement("div");
       heart.className = "heart";
@@ -109,9 +134,21 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.animationDuration = (3 + Math.random() * 3) + "s";
       document.body.appendChild(heart);
-
       setTimeout(() => heart.remove(), 6000);
     }, 300);
+
+    // Confetti
+    setInterval(() => {
+      const confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.backgroundColor =
+        ["#ff4d6d", "#ffc0cb", "#ffb6c1", "#ff69b4"]
+        [Math.floor(Math.random() * 4)];
+      confetti.style.animationDuration = (3 + Math.random() * 2) + "s";
+      document.body.appendChild(confetti);
+      setTimeout(() => confetti.remove(), 5000);
+    }, 200);
   </script>
 
 </body>
